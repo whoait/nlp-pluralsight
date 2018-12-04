@@ -11,20 +11,6 @@ article = article.decode('utf8')
 spacy_nlp = spacy.load('en')
 document = spacy_nlp(article)
 
-
-# for token in document.sents:
-#     # sentence_document = spacy_nlp(token)
-#     quantifier = ''
-#     for ents_token in token.ents:
-#       if ents_token.label_ == 'CARDINAL' or ents_token.label_ == 'PERCENT':
-#         quantifier = ents_token
-#       # if quantifier == '':
-#       #   continue
-#     token.pos_
-#     print(token.lemma_)
-#     print(quantifier)
-
-
 arr_sentence = []
 for sentence in document.sents:
     arr_sentence.append(sentence.text)
@@ -32,12 +18,20 @@ for sentence in document.sents:
 for sentence in arr_sentence:
     sentence = spacy_nlp(sentence)
     quantifier = ''
+    adjective = ''
+    noun = ''
     for ents_token in sentence.ents:
       if ents_token.label_ == 'CARDINAL' or ents_token.label_ == 'PERCENT':
-        quantifier = ents_token
+        quantifier += str(ents_token)
     for token in sentence:
-      if str(token.pos_) != 'ADJ':
-        continue
       print(token.tag_, token.pos_, token.text)
+      if str(token.pos_) == 'ADJ':
+        adjective += token.text + ','
+      if str(token.pos_) == 'NOUN':
+        noun += token.text + ','
+      
     print(sentence)
+    print(adjective)
+    print(noun)
     print(quantifier)
+    
