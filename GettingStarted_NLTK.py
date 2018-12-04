@@ -8,6 +8,7 @@ nltk.download('wordnet')
 text = "How high-tech suppliers are responding to the hyperscaler opportunity? To win in the hyperscaler market, tech vendors must take an entirely new approach."
 from nltk.tokenize import word_tokenize, sent_tokenize
 sents=sent_tokenize(text)
+print('tokenize text is bellow')
 print(sents)
 
 words=[word_tokenize(sent) for sent in sents]
